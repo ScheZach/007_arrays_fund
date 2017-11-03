@@ -6,18 +6,15 @@ public class arrayFund {
 	
 	public void showInstruction() {
 		
-		String msg ="Essential rules for arrays";
-		String msg1 = "1. Arrays have a FIXED length!!! At the time they are created.";
-		String msg2 = "2. Two ways to set array size:";
-		String msg3 = " -- One way is to set size when created with [size]";
-		String msg4 = " -- other way is to set size from initial data {x, y, z}";
-		String msg5 = "Dynamic - when program is running:";
-		String msg6 = "Can NOT NOT NO WAY NO HOW change SIZE of the array!!";
-		String msg7 = "You can change values";
+		String[] rulesArray = {"Essential rules for arrays", 
+				"1. Arrays have a FIXED length!!! At the time they are created.", 
+				"2. Two ways to set array size:", " -- One way is to set size when created with [size]", 
+				" -- other way is to set size from initial data {x, y, z}",
+				"Dynamic - when program is running:", 
+				"Can NOT NOT NO WAY NO HOW change SIZE of the array!!",
+				"You can change values"};
 		
-		msg = (msg + "\n" + msg1 + "\n" + msg2 + "\n" + msg3 + "\n" + msg4);
-		
-		JOptionPane.showMessageDialog(null, msg);
+		JOptionPane.showMessageDialog(null, rulesArray);
 	}//end of showInstruction
 	
 	public void intArrayExample() {
