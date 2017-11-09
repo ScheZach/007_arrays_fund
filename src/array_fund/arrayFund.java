@@ -39,7 +39,7 @@ public class arrayFund {
 		}
 		System.out.println("\nStarting test of intTwoTest[]\n");
 		for (int i = 0; i < intTwoTest.length; i++) {
-			System.out.println("intTest[" + i + "]: " + intTwoTest[i]);
+			System.out.println("intTest[" + i + "]: " + intTwoTest[i] + "\n");
 		}
 		
 	}
