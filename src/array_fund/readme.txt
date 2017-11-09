@@ -22,3 +22,9 @@ possible win conditions:
 "1. First grade: Have X, O players make moves"
 "where you see updated board -- but"
 "-- no check for win, no check for tie, no ask to go again"
+
+2. Second grade: Check for win or tie
+	after each check, display one of the following--
+	no winner yet
+	winner
+	no winner
