@@ -1,9 +1,13 @@
 package array_fund;
 
+import javax.swing.JOptionPane;
+
 public class matrix {
 	//Matrix is another name for a multi-dimentsional array
 	//For example: a 2d array is often called a matrix
 	//2D like a checkerboard, chess board, ect.
+	String msg = "";
+	boolean P1Turn = true;
 	
 	private int[][] ticTacToe = { 
 		{0,1,2}, 
@@ -54,6 +58,7 @@ public class matrix {
 	}
 	
 	public void gameBoard() {
+		/*
 		System.out.println("\nPrint initial game board, player starts in the middle\n");
 		for (int row = 0; row < game.length; row++) {
 			for (int col = 0; col < game[0].length; col++) {
@@ -61,17 +66,51 @@ public class matrix {
 			}
 			System.out.println();
 		}
-		System.out.println("\nMake the 1 move\n");
-		realGame[0][0] = 'X';
-		realGame[1][1] = 'X';
-		realGame[2][2] = 'O';
+		*/
+		System.out.println("\nWelcome to the game");
+		createGameBoard();
+		SelectRowCol();
+		StatePlayer();
+		SelectRowCol();
+	}
+	
+	public void StatePlayer() {
+		if (P1Turn == false) {
+			msg = "Your turn player two";
+			JOptionPane.showMessageDialog(null, msg);
+		}
+		else if (P1Turn == true) {
+			msg = "Your turn player one";
+			JOptionPane.showMessageDialog(null, msg);
+		}
+	}
+	
+	public void SelectRowCol() {
+		msg = "What row would you like to select (1,2,3)";
+		int rowSelect = Integer.parseInt(JOptionPane.showInputDialog(msg))-1;
+		msg = "What column would you like to select (1,2,3)";
+		int colSelect = Integer.parseInt(JOptionPane.showInputDialog(msg))-1;
+		if (P1Turn == true) {
+			realGame[rowSelect][colSelect] = 'X';
+			P1Turn = false;
+			System.out.println();
+			createGameBoard();
+		}
+		else if (P1Turn == false) {
+			realGame[rowSelect][colSelect] = 'O';
+			P1Turn = true;
+			System.out.println();
+			createGameBoard();
+		}
+	}
+	
+	public void createGameBoard() {
 		for (int row = 0; row < realGame.length; row++) {
 			for (int col = 0; col < realGame[0].length; col++) {
 				System.out.print(realGame[row][col]+ " ");
 			}
 			System.out.println();
 		}
-
 	}
 	
 }// end of Matrix
