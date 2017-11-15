@@ -8,6 +8,8 @@ public class matrix {
 	//2D like a checkerboard, chess board, ect.
 	String msg = "";
 	boolean P1Turn = true;
+	int turnNum = 0;
+	boolean StopLoop = false;
 	
 	private int[][] ticTacToe = { 
 		{0,1,2}, 
@@ -58,6 +60,7 @@ public class matrix {
 	}
 	
 	public void gameBoard() {
+		String ConfirmStart = "Yes";
 		/*
 		System.out.println("\nPrint initial game board, player starts in the middle\n");
 		for (int row = 0; row < game.length; row++) {
@@ -69,9 +72,96 @@ public class matrix {
 		*/
 		System.out.println("\nWelcome to the game");
 		createGameBoard();
-		SelectRowCol();
-		StatePlayer();
-		SelectRowCol();
+		
+		while (StopLoop == false) {
+			StatePlayer();
+			SelectRowCol();
+			StatePlayer();
+			SelectRowCol();
+			msg = "Are you done playing? (Y/n)";
+			ConfirmStart = JOptionPane.showInputDialog(msg);
+			if (ConfirmStart.equalsIgnoreCase("n") || ConfirmStart.equalsIgnoreCase("no")) {
+				StopLoop = false;
+			}//end of if
+			else if (ConfirmStart.equalsIgnoreCase("y") || ConfirmStart.equalsIgnoreCase("yes")) {
+				StopLoop = true;
+				JOptionPane.showMessageDialog(null, "Thank you for using my program");
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "I'm sorry but I don't understand that.");
+			}
+		}
+	}
+	
+	public void checkForWin() {
+		if (realGame[0][0] == 'X') {
+			if (realGame[0][1] == 'X') {
+				if (realGame[0][2] == 'X') {
+					JOptionPane.showMessageDialog(null, "Congrats player 1! You won");
+					StopLoop = true;
+				}
+			}
+			else if (realGame[1][0] == 'X') {
+				if (realGame[2][0] == 'X') {
+					JOptionPane.showMessageDialog(null, "Congrats player 1! You won");
+					StopLoop = true;
+				}
+			}
+			else if (realGame[1][1] == 'X') {
+				if (realGame[2][2] == 'X') {
+					JOptionPane.showMessageDialog(null, "Congrats player 1! You won");
+					StopLoop = true;
+				}
+			}
+		}// end of realGame[0][0]
+		else if (realGame[2][2] == 'X') {
+			if (realGame[2][1] == 'X') {
+				if (realGame[2][0] == 'X') {
+					JOptionPane.showMessageDialog(null, "Congrats player 2! You won");
+					StopLoop = true;
+				}
+			}
+			else if (realGame[1][2] == 'X') {
+				if (realGame[0][2] == 'X') {
+					JOptionPane.showMessageDialog(null, "Congrats player 2! You won");
+					StopLoop = true;
+				}
+			}
+		}// end of realGame[3][3]
+		if (realGame[0][0] == 'O') {
+			if (realGame[0][1] == 'O') {
+				if (realGame[0][2] == 'O') {
+					JOptionPane.showMessageDialog(null, "Congrats player 2! You won");
+					StopLoop = true;
+				}
+			}
+			else if (realGame[1][0] == 'O') {
+				if (realGame[2][0] == 'O') {
+					JOptionPane.showMessageDialog(null, "Congrats player 2! You won");
+					StopLoop = true;
+				}
+			}
+			else if (realGame[1][1] == 'O') {
+				if (realGame[2][2] == 'O') {
+					JOptionPane.showMessageDialog(null, "Congrats player 2! You won");
+					StopLoop = true;
+				}
+			}
+		}// end of realGame[0][0]
+		else if (realGame[2][2] == 'O') {
+			if (realGame[2][1] == 'O') {
+				if (realGame[2][0] == 'O') {
+					JOptionPane.showMessageDialog(null, "Congrats player 2! You won");
+					StopLoop = true;
+				}
+			}
+			else if (realGame[1][2] == 'O') {
+				if (realGame[0][2] == 'O') {
+					JOptionPane.showMessageDialog(null, "Congrats player 2! You won");
+					StopLoop = true;
+				}
+			}
+		}// end of realGame[3][3]
 	}
 	
 	public void StatePlayer() {
@@ -91,16 +181,32 @@ public class matrix {
 		msg = "What column would you like to select (1,2,3)";
 		int colSelect = Integer.parseInt(JOptionPane.showInputDialog(msg))-1;
 		if (P1Turn == true) {
-			realGame[rowSelect][colSelect] = 'X';
+			if (realGame[rowSelect][colSelect] == 'O') {
+				JOptionPane.showMessageDialog(null, "please select a blank space");
+				SelectRowCol();
+			}
+			else {
+				realGame[rowSelect][colSelect] = 'X';
+			}
 			P1Turn = false;
 			System.out.println();
+			turnNum++;
 			createGameBoard();
 		}
 		else if (P1Turn == false) {
-			realGame[rowSelect][colSelect] = 'O';
-			P1Turn = true;
-			System.out.println();
-			createGameBoard();
+			if (turnNum < 9) {
+				if (realGame[rowSelect][colSelect] == 'X') {
+					JOptionPane.showMessageDialog(null, "please select a blank space");
+					SelectRowCol();
+				}
+				else {
+					realGame[rowSelect][colSelect] = 'O';
+				}
+				P1Turn = true;
+				System.out.println();
+				turnNum++;
+				createGameBoard();
+			}
 		}
 	}
 	
