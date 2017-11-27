@@ -206,7 +206,7 @@ public class matrix {
 					}
 				}
 			}//end of realGame[2][2]
-			else if (turnNum > 8)  {
+			else if (turnNum > 7)  {
 				JOptionPane.showMessageDialog(null, "Its a tie ~_~");
 				StopLoop = true;
 				askAgain = false;
@@ -246,7 +246,7 @@ public class matrix {
 			P1Turn = false;
 		}
 		else if (P1Turn == false) {
-			if (turnNum < 9) {
+			if (turnNum < 8) {
 				if (realGame[rowSelect][colSelect] == 'X') {
 					JOptionPane.showMessageDialog(null, "please select a blank space");
 					SelectRowCol();
